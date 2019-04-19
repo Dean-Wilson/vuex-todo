@@ -4,7 +4,7 @@
     <HelloWorld msg="Welcome to Your ToDo App"/>
     <h2>Todos:</h2>
     <ToDos></ToDos>
-    <button @click="completeAll">Complete all</button>
+    <button @click="completeAll" v-show="!allCompleted">Complete all</button>
   </div>
 </template>
 

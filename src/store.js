@@ -17,8 +17,11 @@ export default new Vuex.Store({
         todo.done = true
       })
     },
-    toggleTodo (state, todo) {
+    toggleTodo (todo) {
       todo.done = !todo.done
+    },
+    deleteTodo (state, todo) {
+      state.todos.splice(state.todos.indexOf(todo), 1)
     }
   },
   actions: {
