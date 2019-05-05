@@ -21,7 +21,7 @@ export default {
     HelloWorld, ToDos
   },
   computed: {
-    ...mapState(['allTodosCompleted']),
+    ...mapGetters(['allTodosCompleted'])
   },
   methods: {
     ...mapMutations(['completeAll']),
