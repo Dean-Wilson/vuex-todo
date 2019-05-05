@@ -3,8 +3,9 @@
     <img alt="Vue logo" src="../assets/logo.png">
     <HelloWorld msg="Welcome to Your ToDo App"/>
     <h2>Todos:</h2>
+    <input type="text" placeholder="Do this..." @keyup.enter="addTodo">
     <ToDos></ToDos>
-    <button @click="completeAll" v-show="!allCompleted">Complete all</button>
+    <button @click="completeAll" v-show="!allTodosCompleted">Complete all</button>
   </div>
 </template>
 
@@ -12,15 +13,23 @@
 // @ is an alias to /src
 import HelloWorld from '@/components/HelloWorld.vue'
 import ToDos from '@/components/ToDos.vue'
-import { mapMutations } from 'vuex'
+import { mapMutations, mapGetters, mapState } from 'vuex'
 
 export default {
   name: 'home',
   components: {
     HelloWorld, ToDos
   },
+  computed: {
+    ...mapState(['allTodosCompleted']),
+  },
   methods: {
-    ...mapMutations(['completeAll'])
+    ...mapMutations(['completeAll']),
+    addTodo (e) {
+      let body = e.target.value
+      this.$store.commit('addTodo', body)
+      e.target.value = ''
+    }
   }
 }
 </script>
